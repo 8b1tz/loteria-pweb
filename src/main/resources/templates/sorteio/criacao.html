@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="container-fluid bg-success text-light p-5">
+			<h1>Criar Sorteio</h1>
+		</div>
+		<div class="card mt-3">
+			<form th:object="${requisicaoSorteio}" class="card-body" action="/sorteio/criar" method="POST">
+				<div class="form-group mt-3">
+					<label>Valor</label> <input th:field="*{valorDoPremio}" class="form-control"
+						placeholder="valor do prêmio"> 
+				</div>
+				<div class="form-group mt-3">
+					<label>Data para finalizar</label> <input th:field="*{dataParaFim}" class="form-control" 
+						placeholder="data para finalizar"> 
+				</div>
+				<button class="btn btn-success mt-3" type="submit">Criar</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

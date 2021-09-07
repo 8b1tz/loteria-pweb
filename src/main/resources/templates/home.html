@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="container-fluid bg-success text-light p-5">
+				<h1 >Sorteios</h1>
+			</div>
+			<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+			 <div class="navbar-nav">
+				<a class="nav-item nav-link active" href="">Todos</a>
+				<a class="nav-item nav-link" href="">Em progresso</a>
+				<a class="nav-item nav-link" href="">Finalizados</a>
+			</div>
+				<a href="sorteio/criacao"><button class="btn btn-outline-success my-2 my-sm-0">Novo</button></a>
+			</nav>
+			<div class="card mb-3" th:each="sorteio : ${sorteios}">
+					<div class="card-header">sorteio número <span th:text="${sorteio.numeroDoSorteio}"></span></div>
+					<div class="card-body">
+						<div class="row">
+						<div class="col-12 col-sm-9 mb-3">
+							<div >valor do prêmio: <span th:text="${sorteio.valorDoPremio}">20.00</span></div>
+							<div >Data do fim do sorteio: <span th:text="${sorteio.dataParaFim}">20/02/2022</span></div>
+						</div>
+						<div class="col-12 col-sm-3">
+							<button type="button" class="btn btn-success">Participar</button>
+						</div>
+					</div>
+			 	</div>
+			</div>
+		</div>
+	</body>
+</html>
+	
+	
