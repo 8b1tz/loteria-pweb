@@ -1,25 +1,28 @@
 package br.edu.ifpb.loteriapweb.dto;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import br.edu.ifpb.loteriapweb.model.Sorteio;
 
 public class RequisicaoSorteio {
-	
+
 	@NotBlank
-	@Positive 
+	@Positive
+	@NotNull
 	private String valorDoPremio;
 	@NotBlank
+	@NotNull
 	@FutureOrPresent
 	private String dataParaFim;
-	  DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
 	public String getValorDoPremio() {
 		return valorDoPremio;
 	}
@@ -39,8 +42,9 @@ public class RequisicaoSorteio {
 	public Sorteio toSorteio() throws ParseException {
 
 		Sorteio sorteio = new Sorteio();
-		sorteio.setValorDoPremio(new BigDecimal(valorDoPremio));
+		sorteio.setValorDoPremio(Double.parseDouble(valorDoPremio));
 		sorteio.setDataParaFim(LocalDate.parse(dataParaFim, df));
+
 		return sorteio;
 	}
 

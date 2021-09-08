@@ -1,15 +1,18 @@
 package br.edu.ifpb.loteriapweb.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.edu.ifpb.loteriapweb.enums.StatusSorteio;
 
 @Entity
 public class Sorteio {
@@ -17,16 +20,18 @@ public class Sorteio {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long numeroDoSorteio;
-	private BigDecimal valorDoPremio;
+	private Double valorDoPremio;
 	private LocalDate dataParaFim;
 	@ElementCollection
 	private List<Integer> dezenasSorteadas = new ArrayList<>();
-
-	public BigDecimal getValorDoPremio() {
+	@Enumerated(EnumType.STRING)
+	private StatusSorteio status;
+	
+	public Double getValorDoPremio() {
 		return valorDoPremio;
 	}
 
-	public void setValorDoPremio(BigDecimal valorDoPremio) {
+	public void setValorDoPremio(Double valorDoPremio) {
 		this.valorDoPremio = valorDoPremio;
 	}
 

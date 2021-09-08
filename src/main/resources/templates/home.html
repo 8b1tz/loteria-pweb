@@ -1,18 +1,13 @@
 <html>
-	<head>
-		<meta charset="UTF-8"/>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-	</head>
+	<head th:replace="~{fragment :: head}"></head>
 	<body>
+	<div th:replace="~{fragment :: menu}"></div>
 		<div class="container">
-			<div class="container-fluid bg-success text-light p-5">
-				<h1 >Sorteios</h1>
-			</div>
+			<div th:replace= "~{fragment :: titulo('Sorteios')}"></div>
 			<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
 			 <div class="navbar-nav">
 				<a class="nav-item nav-link active" href="">Todos</a>
-				<a class="nav-item nav-link" href="">Em progresso</a>
-				<a class="nav-item nav-link" href="">Finalizados</a>
+				<a class="nav-item nav-link" href="">Participando</a>
 			</div>
 				<a href="sorteio/criacao"><button class="btn btn-outline-success my-2 my-sm-0">Novo</button></a>
 			</nav>

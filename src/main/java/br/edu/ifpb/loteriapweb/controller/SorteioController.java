@@ -23,7 +23,7 @@ public class SorteioController {
 	private SorteioRepository sorteioRepository;
 
 	@GetMapping("criacao")
-	public String formulario() {
+	public String formulario(RequisicaoSorteio requisicao) {
 		return "sorteio/criacao";
 	}
 
