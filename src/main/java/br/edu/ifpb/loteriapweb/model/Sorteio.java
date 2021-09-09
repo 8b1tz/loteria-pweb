@@ -4,29 +4,56 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.edu.ifpb.loteriapweb.enums.StatusSorteio;
 
 @Entity
 public class Sorteio {
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long numeroDoSorteio;
+	private Integer numeroDoSorteio;
+
+	@NotBlank(message = "Campo obrigatório")
+	@Positive(message = "Precisa ser um valor positivo")
 	private Double valorDoPremio;
+
+	@OneToMany(mappedBy = "sorteio", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	private List<Aposta> apostas = new ArrayList<>();
+
 	private LocalDate dataParaFim;
+
 	@ElementCollection
 	private List<Integer> dezenasSorteadas = new ArrayList<>();
+
 	@Enumerated(EnumType.STRING)
 	private StatusSorteio status;
 	
+	public Sorteio() {
+	
+	}
+
+	public StatusSorteio getStatus() {
+		return status;
+	}
+
 	public Double getValorDoPremio() {
 		return valorDoPremio;
 	}
@@ -50,10 +77,24 @@ public class Sorteio {
 	public void setDezenasSorteadas(List<Integer> dezenasSorteadas) {
 		this.dezenasSorteadas = dezenasSorteadas;
 	}
-	public void setNumeroDoSorteio(Long numeroDoSorteio) {
+
+	public void setNumeroDoSorteio(Integer numeroDoSorteio) {
 		this.numeroDoSorteio = numeroDoSorteio;
 	}
-	public Long getNumeroDoSorteio() {
+
+	public void adicionarAposta(Aposta aposta) {
+		apostas.add(aposta);
+	}
+
+	public void removerAposta(Aposta aposta) {
+		apostas.remove(aposta);
+	}
+
+	public List<Aposta> getApostas() {
+		return apostas;
+	}
+
+	public Integer getNumeroDoSorteio() {
 		return numeroDoSorteio;
 	}
 

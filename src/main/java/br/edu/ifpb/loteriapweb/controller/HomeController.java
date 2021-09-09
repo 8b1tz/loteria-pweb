@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.loteriapweb.model.Sorteio;
 import br.edu.ifpb.loteriapweb.repository.SorteioRepository;
@@ -15,11 +16,10 @@ public class HomeController {
 
 	@Autowired
 	private SorteioRepository sorteioRepository;
-	
+
 	@GetMapping("/home")
-	public String home(Model model) {
-		List<Sorteio> sorteios = sorteioRepository.findAll();
-		model.addAttribute("sorteios", sorteios);
-		return "home";
+	public ModelAndView home(ModelAndView mv) {
+		mv.addObject("sorteios", sorteioRepository.findAll());
+		return mv;
 	}
 }

@@ -20,7 +20,9 @@
 							<div >Data do fim do sorteio: <span th:text="${sorteio.dataParaFim}">20/02/2022</span></div>
 						</div>
 						<div class="col-12 col-sm-3">
-							<button type="button" class="btn btn-success">Participar</button>
+						<a th:href="@{/sorteio/{id}/apostas/(id=${sorteio.numeroDoSorteio})}">
+							<button   type="submit" class="btn btn-success">Participar</button>
+						</a>
 						</div>
 					</div>
 			 	</div>
@@ -28,5 +30,6 @@
 		</div>
 	</body>
 </html>
+
 	
 	

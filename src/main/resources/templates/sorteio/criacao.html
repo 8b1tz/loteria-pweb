@@ -5,14 +5,15 @@
 	<div class="container">
 		<div th:replace= "~{fragment :: titulo('Criação de sorteio')}"></div>
 		<div class="card mt-3">
-			<form th:object="${requisicaoSorteio}" class="card-body" action="/sorteio/criar" method="POST">
+			<form th:object="${sorteio}" class="card-body" action="/sorteio/criar" method="POST">
 				<div class="form-group mt-3">
-					<label>Valor</label> <input th:field="*{valorDoPremio}" class="form-control"
+					<label>Valor</label> <input th:field="*{valorDoPremio}" th:error:class="is-invalid" class="form-control"
 						placeholder="valor do prêmio"> 
+					
 				</div>
 				<div class="form-group mt-3">
-					<label>Data para finalizar</label> <input th:field="*{dataParaFim}" class="form-control" 
-						placeholder="data para finalizar"> 
+					<label>Data para finalizar</label> <input th:field="*{dataParaFim}" th:error:class="is-invalid" class="form-control" 
+						placeholder="dd/mm/yyyy"> 
 				</div>
 				<button class="btn btn-success mt-3" type="submit">Criar</button>
 			</form>
