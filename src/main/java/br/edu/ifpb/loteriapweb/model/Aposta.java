@@ -61,4 +61,9 @@ public class Aposta {
 		return numeros;
 	}
 
+	@Override
+	public String toString() {
+		return "Aposta [id=" + id + ", sorteio=" + sorteio + ", numeros=" + numeros + "]";
+	}
+
 }

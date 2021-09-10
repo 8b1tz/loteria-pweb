@@ -14,21 +14,21 @@ import br.edu.ifpb.loteriapweb.model.Sorteio;
 import br.edu.ifpb.loteriapweb.repository.SorteioRepository;
 
 @Controller
-@RequestMapping("sorteio")
+
 public class SorteioController {
 
 	@Autowired
 	private SorteioRepository sorteioRepository;
 
 
-	@GetMapping("criacao")
+	@GetMapping("sorteio/criacao")
 	public ModelAndView formulario(Sorteio sorteio, ModelAndView mv) {
 		mv.setViewName(null);
 		return mv;
 
 	}
 
-	@PostMapping("criar")
+	@PostMapping("sorteio/criar")
 	public ModelAndView criar(@Valid Sorteio sorteio, BindingResult resultadoValidacao, ModelAndView mv) {
 		if (resultadoValidacao.hasErrors()) {
 			mv.addObject("sorteio", sorteio);

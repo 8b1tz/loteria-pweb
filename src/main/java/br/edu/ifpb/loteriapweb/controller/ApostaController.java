@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.loteriapweb.model.Aposta;
@@ -23,18 +23,26 @@ public class ApostaController {
 	@Autowired
 	private ApostaRepository apostaRepository;
 	
-	@GetMapping("sorteio/{idsorteio}/apostas")
-	public String findById(@PathVariable Integer idsorteio, ModelAndView mv) {
-		List<Aposta> apostas = sorteioRepository.findById(idsorteio).get().getApostas();;
-		mv.addObject("apostas", apostaRepository.findAll());
-		return "aposta/apostas";
+	
+	@RequestMapping(value = "sorteio/{idsorteio}/apostas", method = RequestMethod.GET)
+	public ModelAndView findById(@PathVariable Integer idsorteio, ModelAndView mv) {
+		mv.setViewName("aposta/apostas");
+		Sorteio sorteio = sorteioRepository.findById(idsorteio).get();
+		List<Aposta> apostas = sorteio.getApostas();
+		mv.addObject("apostas", apostas);
+		mv.addObject("sorteio", sorteio);
+		return mv;
 	}
 	
-	@PostMapping("sorteio/{idsorteio}/criaraposta")
-	public String saveAposta(@PathVariable Integer idsorteio, Aposta aposta, ModelAndView mv) {
-		Sorteio sorteio = sorteioRepository.getById(idsorteio);
-		sorteio.adicionarAposta(aposta);
-		apostaRepository.save(aposta);
-		return "aposta/apostas";
+	@RequestMapping(value = "sorteio/{idsorteio}/formularioaposta", method = RequestMethod.GET)
+	public ModelAndView formaposta(@PathVariable Integer idsorteio, ModelAndView mv) {
+		mv.setViewName("aposta/criacaoaposta");
+		return mv;
+	}
+	
+	@RequestMapping(value = "sorteio/{idsorteio}/criaraposta", method = RequestMethod.POST)
+	public ModelAndView saveaposta(@PathVariable Integer idsorteio, ModelAndView mv) {
+	 //implementar
+		return mv;
 	}
 }

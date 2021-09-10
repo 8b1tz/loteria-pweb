@@ -1,9 +1,25 @@
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-</body>
+	<head th:replace="~{fragment :: head}"></head>
+	<body>
+	<div th:replace="~{fragment :: menu}"></div>
+		<div class="container">
+			<div th:replace= "~{fragment :: titulo('Apostas')}"></div>
+			<div class="card mb-3 mt-3" th:each="aposta : ${apostas}">
+					<div class="card-header">Aposta de número:  <span th:text="${aposta.id}"></span></div>
+					<div class="card-body">
+						<div class="row">
+						<div class="col-12 col-sm-9 mb-3">
+							<div >números apostas: <span th:text="${aposta.numeros}">20.00</span></div>
+							<div >Data do fim do sorteio: <span>20/02/2022</span></div>
+						</div>
+						<div class="col-12 col-sm-3">
+						</div>
+					</div>
+			 	</div>
+			</div>
+			<a th:href="@{/sorteio/{id}/formularioaposta/(id=${sorteio.numeroDoSorteio})}">
+				<button   type="submit" class="btn btn-success">Apostar</button>
+			</a>
+		</div>
+	</body>
 </html>
