@@ -29,7 +29,7 @@ public class Sorteio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer numeroDoSorteio;
-
+	private boolean foiSorteado;
 	@NotBlank(message = "Campo obrigatório")
 	@Positive(message = "Precisa ser um valor positivo")
 	private Double valorDoPremio;
@@ -48,6 +48,14 @@ public class Sorteio {
 	
 	public Sorteio() {
 	
+	}
+	
+	public boolean isFoiSorteado() {
+		return foiSorteado;
+	}
+
+	public void setFoiSorteado(boolean foiSorteado) {
+		this.foiSorteado = foiSorteado;
 	}
 
 	public StatusSorteio getStatus() {
@@ -74,10 +82,13 @@ public class Sorteio {
 		return dezenasSorteadas;
 	}
 
-	public void setDezenasSorteadas(List<Integer> dezenasSorteadas) {
-		this.dezenasSorteadas = dezenasSorteadas;
+	public void adicionarDezenasSorteadas(int dezena) {
+		dezenasSorteadas.add(dezena);
 	}
-
+	public void removerDezenasSorteadas(int dezena) {
+		dezenasSorteadas.remove(dezena);
+	}
+	
 	public void setNumeroDoSorteio(Integer numeroDoSorteio) {
 		this.numeroDoSorteio = numeroDoSorteio;
 	}
