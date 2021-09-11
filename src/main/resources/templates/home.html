@@ -12,11 +12,11 @@
 				<a href="sorteio/criacao"><button class="btn btn-outline-success my-2 my-sm-0">Novo</button></a>
 			</nav>
 			<div class="card mb-3" th:each="sorteio : ${sorteios}">
-					<div class="card-header">sorteio número <span th:text="${sorteio.numeroDoSorteio}"></span></div>
+					<div class="card-header">sorteio numero <span th:text="${sorteio.numeroDoSorteio}"></span></div>
 					<div class="card-body">
 						<div class="row">
 						<div class="col-12 col-sm-9 mb-3">
-							<div >valor do prêmio: <span th:text="${sorteio.valorDoPremio}"></span></div>
+							<div >valor do premio: <span th:text="${sorteio.valorDoPremio}"></span></div>
 							<div >Data do fim do sorteio: <span th:text="${sorteio.dataParaFim}"></span></div>
 							<div >Status: <span th:text="${sorteio.status}"></span></div>
 							<div th:if="${sorteio.foiSorteado} == true">sorteados:<span th:text="${sorteio.DezenasSorteadas}"></span></div>
@@ -32,6 +32,3 @@
 		</div>
 	</body>
 </html>
-
-	
-	

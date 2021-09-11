@@ -10,11 +10,11 @@
 			</form>
 			<div th:if="${sorteio.foiSorteado} == true" > O resultado foi: <div th:text="${sorteio.dezenasSorteadas}">resultado</div></div>
 			<div class="card mb-3 mt-3" th:each="aposta : ${apostas}">
-					<div class="card-header">Aposta de número:  <span th:text="${aposta.id}"></span></div>
+					<div class="card-header">Aposta de numero:  <span th:text="${aposta.id}"></span></div>
 					<div class="card-body">
 						<div class="row">
 						<div class="col-12 col-sm-9 mb-3">
-							<div >Números apostas: <span th:text="${aposta.numeros}"></span></div>
+							<div >Numeros apostas: <span th:text="${aposta.numeros}"></span></div>
 							<div >Status: <span th:text="${aposta.status}"></span></div>
 						
 						</div>

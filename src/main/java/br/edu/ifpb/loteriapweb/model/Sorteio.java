@@ -112,7 +112,5 @@ public class Sorteio {
 	public void setStatus(StatusSorteio status) {
 		this.status = status;
 	}
-	
-	
 
 }
